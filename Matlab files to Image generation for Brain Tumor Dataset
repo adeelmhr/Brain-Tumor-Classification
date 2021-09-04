@@ -1,0 +1,12 @@
+clear all; close all; clc;
+srcFiles = dir('/MATLAB Drive/Data/1/*.mat');  % the folder in which ur images exists
+for i = 1 : length(srcFiles)
+    filename = strcat('/MATLAB Drive/Data/1/',srcFiles(i).name);
+    im = load(filename);
+    Im = [im.cjdata];
+    A = [Im.image];
+    I = uint8(255 * mat2gray(A));
+    % newfilename=strcat('/MATLAB Drive/Data/2',srcFiles(i).name);
+    % imwrite(grayImage,newfilename,'jpg');
+        imwrite(I, strcat('/MATLAB Drive/Data/1/class_',num2str(Im.label),'/my_new',num2str(i),'.jpg'));
+end
